@@ -14,13 +14,15 @@ def insong():
         previousS()
     elif insong ==end:
         song.remove(song[-1])
-        return False
+        raise NameError
 #function to execute reverse prevois input while maintaining serial numbering
 def previousS():
     song.remove(song[-1])
-    artiste.remove(artiste[-1])
+    artiste.remove(artiste[-1]) 
     byartist()
     insong()
+    
+   
 #same as input func above       
 def byartist():
     byartist = input("({}). enter long.?: ".format(len(artiste) + 1)).lower()
@@ -29,7 +31,7 @@ def byartist():
         previousA()
     elif byartist ==end:
         artiste.remove(artiste[-1])
-        return False
+        raise NameError
 #same as reversal func above
 def previousA():
     artiste.remove(artiste[-1])
@@ -40,7 +42,7 @@ def previousA():
     
 file = input("Enter filename(e.g. 'filename.txt'): ")
 dbms = open(file, 'w')
-print("PUSH ENTER TO CONTINUE OR TYPE 'PREV' TO RETURN TO PREVIOUS INPUT\n OR ENTER 'END' (CONTINUALLY IF NRCCESSARY) WHEN DONE")
+print("PUSH ENTER TO CONTINUE OR TYPE 'PREV' TO RETURN TO PREVIOUS INPUT\n OR ENTER 'END' WHEN DONE")
 
 try:
     while True:
@@ -54,11 +56,12 @@ try:
 except IndexError:
  #error handlin for cases where prev fuction tries to remove value from empty list   
     print("no values to return to!")
-      
-dbms.write(str(song)+str(artiste))
-dbms.close()
+
+except NameError:
+    dbms.write(str(song)+str(artiste))
+    dbms.close()
 #to display the contents of file with the values
 r= open("rickon.txt", "r")
 print(r.read())
 
-#when the code flow running within the reversal functions end doesnt end the task.
+#change the format of the output to (x,y)!!
